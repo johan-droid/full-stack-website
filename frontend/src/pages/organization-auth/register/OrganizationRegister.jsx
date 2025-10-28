@@ -208,10 +208,7 @@ const OrganizationRegister = () => {
                 onClick={() => handleGenderSelect('male')}
               >
                 <div className="gender-avatar male">
-                  <svg viewBox="0 0 100 100" fill="none">
-                    <circle cx="50" cy="30" r="15" fill="#E8E4E6" stroke="#333" strokeWidth="2"/>
-                    <path d="M 30 70 Q 50 50 70 70 L 50 90 L 30 70" fill="#4A90E2" stroke="#333" strokeWidth="2"/>
-                  </svg>
+                  <img src="/logos/male_avatar.png" alt="Male Avatar" />
                 </div>
                 <span>Male</span>
               </button>
@@ -222,10 +219,7 @@ const OrganizationRegister = () => {
                 onClick={() => handleGenderSelect('female')}
               >
                 <div className="gender-avatar female">
-                  <svg viewBox="0 0 100 100" fill="none">
-                    <circle cx="50" cy="30" r="15" fill="#E8E4E6" stroke="#333" strokeWidth="2"/>
-                    <path d="M 35 95 Q 50 75 65 95 Q 50 85 35 95" fill="#E74C3C" stroke="#333" strokeWidth="2"/>
-                  </svg>
+                  <img src="/logos/female_avatar.png" alt="Female Avatar" />
                 </div>
                 <span>Female</span>
               </button>
@@ -236,10 +230,7 @@ const OrganizationRegister = () => {
                 onClick={() => handleGenderSelect('other')}
               >
                 <div className="gender-avatar other">
-                  <svg viewBox="0 0 100 100" fill="none">
-                    <circle cx="50" cy="30" r="15" fill="#E8E4E6" stroke="#333" strokeWidth="2"/>
-                    <path d="M 30 70 L 50 90 L 70 70" fill="#F1C40F" stroke="#333" strokeWidth="2"/>
-                  </svg>
+                  <img src="/logos/other_avatar.png" alt="Other Avatar" />
                 </div>
                 <span>Other</span>
               </button>

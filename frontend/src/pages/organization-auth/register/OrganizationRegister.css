@@ -116,9 +116,12 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.gender-avatar svg {
+.gender-avatar svg,
+.gender-avatar img {
   width: 70px;
   height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .gender-option span {
@@ -159,7 +162,8 @@
     height: 70px;
   }
 
-  .gender-avatar svg {
+  .gender-avatar svg,
+  .gender-avatar img {
     width: 60px;
     height: 60px;
   }
