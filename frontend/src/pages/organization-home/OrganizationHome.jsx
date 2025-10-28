@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import QRCode from 'qrcode'
+import { Box, Typography, Button, Stack } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import AppsIcon from '@mui/icons-material/Apps';
+import { OrganizationSearch } from '../../components/OrganizationSearch';
 import './OrganizationHome.css'
 
 const OrganizationHome = () => {
@@ -329,57 +333,80 @@ const OrganizationHome = () => {
           </div>
         )}
 
-        {/* Search Section */}
-        <div className="search-section">
-          <div className="search-container">
-            <svg className="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <input
-              type="text"
-              placeholder="Search workers by name, skills, or job type..."
-              value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
-              className={!isPremium ? 'locked' : ''}
-              disabled={!isPremium}
-            />
-            {!isPremium && (
-              <div className="lock-overlay">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-              </div>
-            )}
-          </div>
-        </div>
+        {/* M3 Styled Search and Action Buttons */}
+        <Box sx={{ 
+          backgroundColor: '#0A4DFF',
+          p: { xs: 2, md: 4 },
+          borderRadius: '12px',
+          mb: 3,
+          mt: 2
+        }}>
+          {/* The M3-styled Search Bar */}
+          <Box sx={{ mb: 3 }}>
+            <OrganizationSearch />
+          </Box>
 
-        {/* Action Buttons */}
-        <div className="action-buttons">
-          <button 
-            className={`action-btn ${!isPremium ? 'locked' : ''}`}
-            onClick={handleCreateJob}
-            disabled={!isPremium}
+          {/* M3-styled Action Buttons */}
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            justifyContent="center"
+            sx={{ mb: 2 }}
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 5v14M5 12h14"></path>
-            </svg>
-            Create Job Post
-          </button>
-          
-          <button 
-            className={`action-btn ${!isPremium ? 'locked' : ''}`}
-            onClick={() => alert('Bulk actions - Coming soon!')}
-            disabled={!isPremium}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-            </svg>
-            Bulk Actions
-          </button>
-        </div>
+            {/* Primary M3 Button */}
+            <Button
+              variant="contained"
+              startIcon={<AddIcon />}
+              onClick={handleCreateJob}
+              disabled={!isPremium}
+              sx={{
+                borderRadius: '50px',
+                textTransform: 'none',
+                fontWeight: 'bold',
+                px: 3,
+                py: 1.5,
+                backgroundColor: 'white',
+                color: '#0A4DFF',
+                '&:hover': {
+                  backgroundColor: 'grey.200',
+                },
+                '&.Mui-disabled': {
+                  backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                  color: 'rgba(10, 77, 255, 0.5)'
+                }
+              }}
+            >
+              Create Job Post
+            </Button>
+
+            {/* Secondary M3 Button */}
+            <Button
+              variant="outlined"
+              startIcon={<AppsIcon />}
+              onClick={() => alert('Bulk actions - Coming soon!')}
+              disabled={!isPremium}
+              sx={{
+                borderRadius: '50px',
+                textTransform: 'none',
+                fontWeight: 'bold',
+                px: 3,
+                py: 1.5,
+                borderColor: 'white',
+                color: 'white',
+                '&:hover': {
+                  borderColor: 'white',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                },
+                '&.Mui-disabled': {
+                  borderColor: 'rgba(255, 255, 255, 0.3)',
+                  color: 'rgba(255, 255, 255, 0.3)'
+                }
+              }}
+            >
+              Bulk Actions
+            </Button>
+          </Stack>
+        </Box>
 
         {/* Workers Section */}
         <div className="resumes-section">
