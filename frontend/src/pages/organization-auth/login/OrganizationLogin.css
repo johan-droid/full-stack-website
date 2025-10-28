@@ -70,23 +70,43 @@
 .input-group {
   position: relative;
   margin-bottom: 1.5rem;
+  width: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #0545da 100%);
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+  border-color: white;
 }
 
 .input-group input {
   width: 100%;
   padding: 1rem 1rem 1rem 3.5rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
+  background: transparent !important;
+  color: white;
+  border: none !important;
+  border-radius: 0;
   font-size: 1rem;
   transition: all 0.3s ease;
-  background: #f8f9fa; /* Added from UserLogin */
+  box-sizing: border-box;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .input-group input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); /* Added from UserLogin */
-  background: white; /* Added from UserLogin */
+  border-color: transparent;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .input-icon {
@@ -96,7 +116,8 @@
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  color: #999;
+  color: white;
+  z-index: 1;
 }
 
 .eye-icon {
@@ -106,8 +127,9 @@
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  color: #999;
+  color: white;
   cursor: pointer;
+  z-index: 1;
 }
 
 .forgot-password {

@@ -25,7 +25,6 @@
 
 .register-form-card {
   background: white;
-  border-radius: 30px 30px 0 0;
   padding: 2rem;
   margin: 1rem auto 0;
   max-width: 720px;
@@ -36,12 +35,7 @@
   margin-bottom: 2rem;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-weight: 500;
-}
+
 
 .required {
   color: red;
@@ -49,30 +43,49 @@
 
 .input-wrapper {
   position: relative;
+  background: linear-gradient(90deg, #667eea 0%, #0545da 100%);
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  padding: 0.9rem 1rem;
 }
+
+/* Enhancing the focus-within effect */
+.input-wrapper:focus-within {
+  border-color: white; 
+}
+
 
 .input-wrapper input {
   width: 100%;
   padding: 0.9rem 0.9rem 0.9rem 3rem;
-  border: 2px solid #e0e0e0;
+  background: transparent;
+  color: white;
+  border: none;
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .input-wrapper input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: transparent;
+}
+
+.input-wrapper input::placeholder {
+  color: rgb(255, 255, 255);
 }
 
 .input-icon {
   position: absolute;
-  left: 0.9rem;
+  left: 1rem;
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  color: #999;
+  color: white;
+  z-index: 1;
 }
 
 /* Gender Selection */
@@ -87,13 +100,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   background: #f5f5f5;
   border: 3px solid transparent;
   border-radius: 15px;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 140px;
 }
 
 .gender-option:hover {
@@ -128,6 +142,9 @@
   font-weight: 500;
   color: #333;
   font-size: 0.95rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  line-height: 1.2;
 }
 
 .submit-btn {
@@ -155,6 +172,12 @@
 @media (max-width: 768px) {
   .gender-options {
     flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gender-option {
+    min-height: 120px;
+    padding: 1rem;
   }
 
   .gender-avatar {

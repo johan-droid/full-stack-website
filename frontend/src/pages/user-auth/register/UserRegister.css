@@ -100,54 +100,86 @@
 
 .input-wrapper {
   position: relative;
+  background: linear-gradient(90deg, #667eea 0%, #0545da 100%);
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-wrapper:focus-within {
+  border-color: white;
 }
 
 .input-wrapper input {
   width: 100%;
   padding: 0.9rem 0.9rem 0.9rem 3rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
+  background: transparent !important;
+  color: white;
+  border: none !important;
+  border-radius: 0;
   font-size: 1rem;
   transition: all 0.3s ease;
+  box-sizing: border-box;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.input-wrapper input:focus {
-  outline: none;
-  border-color: #667eea;
+.input-wrapper input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .input-group {
   position: relative;
   margin-bottom: 1.5rem;
   width: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #0545da 100%);
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 0.9rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+  border-color: white;
 }
 
 .input-group input {
   width: 100%;
-  padding: 1rem 1rem 1rem 3.5rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 12px;
+  padding: 0.9rem 0.9rem 0.9rem 3rem;
+  background: transparent !important;
+  color: white;
+  border: none !important;
+  border-radius: 0;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
-  background: #f8f9fa;
+  box-shadow: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .input-group input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  background: white;
+  border-color: transparent;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .input-icon {
   position: absolute;
-  left: 0.9rem;
+  left: 1rem;
   top: 50%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  color: #999;
+  color: white;
+  z-index: 1;
 }
 
 .eye-icon {
@@ -252,13 +284,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   background: #f5f5f5;
   border: 3px solid transparent;
   border-radius: 15px;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 140px;
 }
 
 .gender-option:hover {
@@ -293,6 +326,9 @@
   font-weight: 500;
   color: #333;
   font-size: 0.95rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  line-height: 1.2;
 }
 
 /* Responsive Design */
@@ -326,6 +362,12 @@
   
   .gender-options {
     flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gender-option {
+    min-height: 120px;
+    padding: 1rem;
   }
 
   .gender-avatar {
