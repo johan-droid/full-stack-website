@@ -10,14 +10,43 @@
   color: var(--color-text-tertiary) !important;
 }
 
-/* Login/Register forms */
-.input-wrapper input {
+/* Login/Register forms - exclude registration forms with gradient backgrounds */
+.input-wrapper input:not([data-gradient-preserve]) {
   background: var(--color-bg-secondary) !important;
   color: var(--color-text-primary) !important;
 }
 
-.input-wrapper input::placeholder {
+.input-wrapper input:not([data-gradient-preserve])::placeholder {
   color: var(--color-text-tertiary) !important;
+}
+
+/* Preserve white backgrounds for registration forms */
+.input-wrapper[data-gradient-preserve] input {
+  background: transparent !important;
+  color: #000 !important;
+}
+
+.input-wrapper[data-gradient-preserve] input::placeholder {
+  color: #999 !important;
+}
+
+/* Disable autocomplete/suggestion boxes */
+input[autocomplete="off"],
+input[autocomplete="new-password"],
+input[autocomplete="username"] {
+  -webkit-autocomplete: off !important;
+  -moz-autocomplete: off !important;
+  autocomplete: off !important;
+}
+
+/* Disable browser autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: #000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }
 
 /* Job modal forms */

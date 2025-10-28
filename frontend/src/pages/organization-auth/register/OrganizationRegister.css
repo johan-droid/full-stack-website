@@ -66,7 +66,7 @@
 
 .input-wrapper {
   position: relative;
-  background: linear-gradient(90deg, #667eea 0%, #0545da 100%);
+  background: white;
   border: 2px solid #e0e0e0;
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -75,7 +75,7 @@
 
 /* Enhancing the focus-within effect */
 .input-wrapper:focus-within {
-  border-color: white; 
+  border-color: #667eea; 
 }
 
 
@@ -83,12 +83,25 @@
   width: 100%;
   padding: 1rem 1rem 1rem 3.5rem;
   background: transparent;
-  color: white;
+  color: #000000; /* Changed to pure black for better visibility */
   border: none;
   border-radius: 12px;
   font-size: 1.1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
+}
+
+/* Ensure password field text is also black */
+.input-wrapper input[type="password"] {
+  color: #000000;
+  -webkit-text-fill-color: #000000; /* For WebKit browsers */
+}
+
+/* For number input type */
+.input-wrapper input[type="tel"],
+.input-wrapper input[type="number"] {
+  color: #000000;
+  -webkit-text-fill-color: #000000; /* For WebKit browsers */
 }
 
 .input-wrapper input:focus {
@@ -97,7 +110,7 @@
 }
 
 .input-wrapper input::placeholder {
-  color: rgb(255, 255, 255);
+  color: #999;
 }
 
 .input-icon {
@@ -107,7 +120,7 @@
   transform: translateY(-50%);
   width: 22px;
   height: 22px;
-  color: white;
+  color: #666;
   z-index: 1;
 }
 

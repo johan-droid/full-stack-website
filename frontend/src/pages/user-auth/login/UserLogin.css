@@ -105,11 +105,11 @@
   border-radius: 12px;
   padding: 0.9rem;
   transition: all 0.3s ease;
-  background: linear-gradient(90deg, #667eea 0%, #0545da 100%);
+  background: white;
 }
 
 .input-wrapper:focus-within {
-  border-color: white;
+  border-color: #667eea;
 }
 
 .input-wrapper input {
@@ -124,14 +124,14 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  color: white;
+  color: #000;
 }
 
 .input-group {
   position: relative;
   margin-bottom: 1.5rem;
   width: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #0545da 100%);
+  background: white;
   border: 2px solid #e0e0e0;
   border-radius: 12px;
   padding: 0.9rem 1rem;
@@ -139,16 +139,17 @@
 }
 
 .input-group:focus-within {
-  border-color: white;
+  border-color: #667eea;
 }
 
 .input-group input {
   width: 100%;
   padding: 1rem 1rem 1rem 3.5rem;
   background: transparent !important;
-  color: white;
+  color: #000000 !important; /* Ensured black text */
+  -webkit-text-fill-color: #000000 !important; /* For WebKit browsers */
   border: none !important;
-  border-radius: 0;
+  border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -166,19 +167,17 @@
 }
 
 .input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #999;
 }
 
 .input-wrapper input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: #999;
 }
 
 .input-icon {
   width: 20px;
   height: 20px;
-  /* --- MODIFIED: Icon Color to White --- */
-  color: white; 
-  /* -------------------------------------- */
+  color: #666;
   flex-shrink: 0;
 }
 
@@ -189,9 +188,7 @@
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  /* --- MODIFIED: Eye Icon Color to White --- */
-  color: white; 
-  /* ----------------------------------------- */
+  color: #666;
   cursor: pointer;
   z-index: 2;
 }

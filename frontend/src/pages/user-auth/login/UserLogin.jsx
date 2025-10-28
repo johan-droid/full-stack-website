@@ -50,6 +50,7 @@ const UserLogin = () => {
               placeholder="Phone number"
               value={formData.phoneNumber}
               onChange={handleInputChange}
+              autocomplete="off"
               required
             />
           </div>
@@ -65,6 +66,7 @@ const UserLogin = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
+              autocomplete="new-password"
               required
             />
             <svg 

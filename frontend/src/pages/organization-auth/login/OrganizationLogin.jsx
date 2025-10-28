@@ -50,6 +50,7 @@ const OrganizationLogin = () => {
               placeholder="Organization email"
               value={formData.email}
               onChange={handleInputChange}
+              autocomplete="off"
               required
             />
           </div>
@@ -65,6 +66,7 @@ const OrganizationLogin = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
+              autocomplete="new-password"
               required
             />
             <svg 
