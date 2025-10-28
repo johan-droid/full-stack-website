@@ -4,11 +4,16 @@
   flex-direction: column;
   min-height: 100vh;
   overflow: auto;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .header-section {
-  padding: 2rem 2rem 1rem;
+  padding: 1rem 0;
   color: white;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .back-btn {
@@ -18,6 +23,9 @@
   color: white;
   cursor: pointer;
   margin-bottom: 1rem;
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
 }
 
 .welcome-section h1 {
@@ -33,11 +41,13 @@
 
 .login-form-section {
   background: white;
-  border-radius: 30px 30px 0 0;
-  padding: 2rem;
-  margin-top: 2rem;
-  max-width: 100%;
+  border-radius: 20px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 450px;
   box-sizing: border-box;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .form-title {
@@ -45,11 +55,13 @@
   font-size: 1.8rem;
   margin-bottom: 2rem;
   text-align: center;
+  font-weight: 600;
 }
 
 .input-group {
   position: relative;
   margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .input-group input {
@@ -59,11 +71,15 @@
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: #f8f9fa;
 }
 
 .input-group input:focus {
   outline: none;
   border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: white;
 }
 
 .input-icon {
@@ -74,6 +90,7 @@
   width: 20px;
   height: 20px;
   color: #999;
+  z-index: 2;
 }
 
 .eye-icon {
@@ -85,6 +102,7 @@
   height: 20px;
   color: #999;
   cursor: pointer;
+  z-index: 2;
 }
 
 .forgot-password {
@@ -94,6 +112,7 @@
   text-decoration: none;
   margin-bottom: 2rem;
   font-size: 0.95rem;
+  width: 100%;
 }
 
 .forgot-password:hover {
@@ -112,6 +131,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-sizing: border-box;
 }
 
 .login-btn:hover {
@@ -120,10 +141,15 @@
   box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
 }
 
+.login-btn:active {
+  transform: translateY(0);
+}
+
 .register-link {
   text-align: center;
   margin-top: 1.5rem;
   color: #666;
+  width: 100%;
 }
 
 .register-link a {
@@ -136,10 +162,62 @@
   text-decoration: underline;
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
   .welcome-section h1 {
     font-size: 2rem;
   }
+  
+  .login-form-section {
+    padding: 2.5rem 2rem;
+    margin: 0 1rem;
+    border-radius: 15px;
+  }
+  
+  .back-btn {
+    position: relative;
+    left: 0;
+    top: 0;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+  
+  .header-section {
+    padding-top: 0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .login-container {
+    padding: 1rem;
+  }
 }
 
+@media (max-width: 480px) {
+  .login-form-section {
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .welcome-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  .welcome-section p {
+    font-size: 1rem;
+  }
+  
+  .input-group input {
+    padding: 0.875rem 0.875rem 0.875rem 3rem;
+    font-size: 0.95rem;
+  }
+  
+  .login-btn {
+    padding: 0.875rem;
+    font-size: 1rem;
+  }
+}
