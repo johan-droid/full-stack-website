@@ -1,0 +1,56 @@
+/* Form text visibility fixes */
+
+/* Search inputs */
+.search-container input {
+  background: var(--color-bg-secondary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+.search-container input::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+/* Login/Register forms */
+.input-wrapper input {
+  background: var(--color-bg-secondary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+.input-wrapper input::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+/* Job modal forms */
+.job-form input,
+.job-form textarea,
+.job-form select {
+  background: var(--color-bg-secondary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+.job-form input::placeholder,
+.job-form textarea::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+/* Organization home search */
+.org-main-content input {
+  background: var(--color-bg-secondary) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Autofill fixes for all browsers */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-text-primary) !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-bg-secondary) inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* Firefox autofill */
+input:-moz-autofill {
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-primary) !important;
+}

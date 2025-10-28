@@ -1,0 +1,58 @@
+/* ATS Score Page Enhancements */
+
+.keywords-section {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.keywords-section h4 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: var(--color-text-primary);
+}
+
+.keywords-found, .keywords-missing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.keyword-tag {
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.keyword-tag.found {
+  background: rgba(51, 209, 122, 0.1);
+  color: var(--color-accent-success);
+  border: 1px solid var(--color-accent-success);
+}
+
+.keyword-tag.missing {
+  background: rgba(245, 166, 35, 0.1);
+  color: var(--color-accent-warning);
+  border: 1px solid var(--color-accent-warning);
+}
+
+/* Template preview enhancements */
+.template-preview {
+  height: 300px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: white;
+  position: relative;
+}
+
+.template-card:hover .template-preview {
+  border-color: var(--color-accent);
+}
+
+.template-card.selected .template-preview {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}

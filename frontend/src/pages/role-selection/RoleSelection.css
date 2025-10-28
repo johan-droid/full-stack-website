@@ -1,0 +1,117 @@
+.role-selection-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0545da 0%, #032b8a 100%);
+}
+
+.header-section {
+  padding: 3rem 2rem 2rem;
+  color: white;
+}
+
+.welcome-section h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.welcome-section p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.role-chooser {
+  margin-top: 3rem;
+}
+
+.role-chooser h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.role-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 3px solid transparent;
+  border-radius: 15px;
+  padding: 1.5rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.role-btn svg {
+  width: 40px;
+  height: 40px;
+}
+
+.role-btn.selected {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: white;
+}
+
+.role-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.action-section {
+  margin-top: auto;
+  padding: 2rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.primary-btn, .secondary-btn {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  background: white;
+  color: #667eea;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.primary-btn:hover, .secondary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .welcome-section h1 {
+    font-size: 2rem;
+  }
+
+  .role-buttons {
+    flex-direction: column;
+  }
+
+  .role-btn {
+    padding: 1.5rem;
+  }
+}
+

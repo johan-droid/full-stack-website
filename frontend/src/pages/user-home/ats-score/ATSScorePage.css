@@ -1,0 +1,325 @@
+.ats-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0545da 0%, #032b8a 100%);
+  padding: 2rem;
+}
+
+.ats-header {
+  text-align: center;
+  color: white;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.ats-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ats-header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.ats-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Upload Section */
+.upload-section {
+  margin-bottom: 3rem;
+}
+
+.upload-box {
+  background: white;
+  border-radius: 20px;
+  padding: 4rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px dashed #e0e0e0;
+}
+
+.upload-box:hover {
+  border-color: #667eea;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.upload-icon {
+  width: 80px;
+  height: 80px;
+  color: #667eea;
+  margin-bottom: 1.5rem;
+}
+
+.upload-box h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.upload-box p {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.file-formats {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #f5f5f5;
+  border-radius: 20px;
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.file-selected {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #e8f5e9;
+  color: #27ae60;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ATS Info */
+.ats-info {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.ats-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.ats-info p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+/* Analyze Button */
+.analyze-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: white;
+  color: #667eea;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.analyze-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.analyze-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Results Section */
+.results-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.score-card {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+}
+
+.score-card h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.score-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem;
+}
+
+.score-ring {
+  width: 100%;
+  height: 100%;
+}
+
+.score-number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  font-weight: 700;
+  color: #667eea;
+}
+
+.score-label {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Suggestions */
+.suggestions-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.suggestions-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.suggestions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestions-list li {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: #f5f5f5;
+  border-radius: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.suggestions-list li::before {
+  content: '•';
+  color: #667eea;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.improve-btn, .edit-btn, .retry-btn {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.improve-btn {
+  background: #667eea;
+  color: white;
+}
+
+.improve-btn:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.edit-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #229954;
+  transform: translateY(-2px);
+}
+
+.retry-btn {
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+}
+
+.retry-btn:hover {
+  background: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+  .ats-header h1 {
+    font-size: 2rem;
+  }
+
+  .upload-box {
+    padding: 3rem 1.5rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .improve-btn, .edit-btn, .retry-btn {
+    width: 100%;
+  }
+
+  .score-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .score-number {
+    font-size: 2rem;
+  }
+}
+

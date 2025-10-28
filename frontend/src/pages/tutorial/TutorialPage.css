@@ -1,0 +1,521 @@
+.tutorial-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0545da 0%, #032b8a 100%);
+}
+
+/* Header Styles */
+.tutorial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: white;
+  padding: 5px;
+}
+
+.logo-placeholder-header {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #8862bd;
+  font-size: 1.2rem;
+}
+
+.header-nav {
+  display: flex;
+  gap: 2rem;
+  color: white;
+  font-weight: 500;
+}
+
+.header-nav span {
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.header-nav span:hover {
+  opacity: 0.8;
+}
+
+/* Header Buttons Container */
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Translation Dropdown */
+.translation-dropdown-container {
+  position: relative;
+}
+
+.translation-btn-header {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.translation-btn-header:hover {
+  background: white;
+  color: #0545da;
+}
+
+.translation-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  min-width: 200px;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+.translation-option {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  color: #333;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.translation-option:hover {
+  background: #f5f5f5;
+  color: #667eea;
+}
+
+.translation-option:last-child {
+  border-bottom: none;
+}
+
+/* Login Dropdown */
+.login-dropdown-container {
+  position: relative;
+}
+
+.login-btn-header {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn-header:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  min-width: 200px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-option {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: #333;
+}
+
+.login-option:hover {
+  background: #f5f5f5;
+  color: #667eea;
+}
+
+.login-option:first-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Signup Dropdown */
+.signup-dropdown-container {
+  position: relative;
+}
+
+.signup-btn-header {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.signup-btn-header:hover {
+  background: #f5f5f5;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.signup-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  min-width: 200px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+.signup-option {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: white;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  color: #333;
+}
+
+.signup-option:hover {
+  background: #f5f5f5;
+  color: #667eea;
+}
+
+.signup-option:first-child {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Main Content - Updated layout */
+.tutorial-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  padding: 4rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.content-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.content-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.content-right h1 {
+  font-size: 3rem;
+  color: white;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+}
+
+.description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.get-started-btn {
+  background: white;
+  color: #667eea;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+}
+
+.get-started-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.video-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.video-placeholder {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 4rem;
+  text-align: center;
+  color: white;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.video-placeholder svg {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.video-placeholder p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.content-full {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-container-full {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.video-placeholder-full {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 6rem;
+  text-align: center;
+  color: white;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.video-placeholder-full svg {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.video-placeholder-full p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+  width: 100%;
+  display: block;
+}
+
+/* Features Section */
+.features-section {
+  padding: 4rem 3rem;
+  background: white;
+  margin-top: 4rem;
+}
+
+.features-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 3rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  text-align: center;
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card svg {
+  width: 60px;
+  height: 60px;
+  color: #667eea;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  color: #666;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .tutorial-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .content-left {
+    order: 2;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content-right {
+    order: 1;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .tutorial-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  .header-buttons {
+    gap: 0.5rem;
+  }
+
+  .translation-btn-header,
+  .login-btn-header,
+  .signup-btn-header {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .content-right h1 {
+    font-size: 2rem;
+  }
+
+  .tutorial-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .features-section {
+    padding: 2rem 1.5rem;
+  }
+
+  .video-placeholder {
+    padding: 3rem 1.5rem;
+  }
+
+  .video-placeholder-full {
+    padding: 4rem 2rem;
+  }
+
+  .video-placeholder-full svg {
+    width: 80px;
+    height: 80px;
+  }
+
+  .video-placeholder-full p {
+    font-size: 1.2rem;
+  }
+}

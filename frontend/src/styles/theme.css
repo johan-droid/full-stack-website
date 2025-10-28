@@ -1,0 +1,52 @@
+/* src/styles/theme.css */
+
+/*
+ * This is your new Design System.
+ * Use these variables everywhere to keep your site consistent.
+ */
+
+:root {
+  /* Fonts */
+  --font-primary: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-display: 'Clash Display', var(--font-primary);
+
+  /* Dark Theme Colors */
+  --color-bg: #0A0C10; /* Very dark blue, almost black */
+  --color-bg-secondary: #161920; /* Dark grey-blue */
+  --color-bg-tertiary: #21242D; /* Lighter grey-blue */
+  
+  --color-text-primary: #F0F6FC; /* Almost white */
+  --color-text-secondary: #C3CAD3; /* Light grey */
+  --color-text-tertiary: #7A828E; /* Medium grey */
+
+  --color-border: #30363D; /* Subtle border */
+  --color-border-hover: #4A5058;
+
+  --color-accent: #4A90E2; /* Bright blue */
+  --color-accent-secondary: #BC8EFF; /* Light purple */
+  --color-accent-danger: #F47067;
+  --color-accent-success: #33D17A;
+  --color-accent-warning: #F5A623;
+
+  /* Gradients */
+  --gradient-accent: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+  --gradient-bg: linear-gradient(135deg, var(--color-bg) 0%, #11141B 100%);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.25);
+  --shadow-glow: 0 0 15px rgba(74, 144, 226, 0.3);
+  --shadow-glow-purple: 0 0 20px rgba(188, 142, 255, 0.25);
+
+  /* Sizing & Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-slow: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

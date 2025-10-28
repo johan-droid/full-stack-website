@@ -1,0 +1,48 @@
+/* src/styles/fonts.css */
+
+/* --- Import Satoshi (Body Font) --- */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https_cdn.example.com/Satoshi-Regular.woff2') format('woff2'); /* Replace with actual font file path */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https_cdn.example.com/Satoshi-Medium.woff2') format('woff2'); /* Replace with actual font file path */
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https_cdn.example.com/Satoshi-Bold.woff2') format('woff2'); /* Replace with actual font file path */
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* --- Import Clash Display (Heading Font) --- */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https_cdn.example.com/ClashDisplay-Semibold.woff2') format('woff2'); /* Replace with actual font file path */
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Clash Display';
+  src: url('https_cdn.example.com/ClashDisplay-Bold.woff2') format('woff2'); /* Replace with actual font file path */
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* * NOTE: You must get these font files. 
+ * A quick way to get them for testing is from Fontshare:
+ * Go to: https://www.fontshare.com/fonts/clash-display
+ * Go to: https://www.fontshare.com/fonts/satoshi
+ * Click "Get Font" -> "Download" or find a CDN link.
+ * For now, you can add this to the top of your `index.html` <head> section
+ * <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700,600&f[]=satoshi@700,500,400&display=swap" rel="stylesheet">
+ * But downloading them to `public/fonts` and using @font-face is the best long-term solution.
+ */
