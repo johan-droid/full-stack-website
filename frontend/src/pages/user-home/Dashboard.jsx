@@ -7,8 +7,19 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined'
 import FileUploadOutlinedIcon from '@mui/icons-material/FileUploadOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import MicNoneOutlinedIcon from '@mui/icons-material/MicNoneOutlined'
+// Removed MicNoneOutlinedIcon import
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
+
+// UPDATED VOICE COMPONENT DEFINITION FOR VISIBILITY
+export const Voice = (props) => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48" {...props}>
+        <g fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="4">
+            <rect width="14" height="27" x="17" y="4" fill="currentColor" rx="7"></rect>
+            <path strokeLinecap="round" d="M9 23c0 8.284 6.716 15 15 15c8.284 0 15-6.716 15-15M24 38v6"></path>
+        </g>
+      </svg>
+)
+
 
 const QuickActionCard = ({ icon, title, subtitle, onClick, sx = {} }) => {
   return (
@@ -88,7 +99,8 @@ const Dashboard = () => {
             cursor: 'pointer',
           }}
         >
-          <MicNoneOutlinedIcon sx={{ color: 'primary.main', mr: 2 }} />
+          {/* Replaced MicNoneOutlinedIcon with custom Voice component */}
+          <Voice style={{ color: '#0A4DFF', marginRight: '16px', fontSize: '24px' }} />
           <Box sx={{ flexGrow: 1 }}>
             <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
               {translate('Build with Voice')}

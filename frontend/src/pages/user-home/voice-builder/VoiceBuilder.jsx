@@ -107,15 +107,13 @@ const VoiceBuilder = () => {
         <div className="voice-recorder-section">
           <div className="recorder-box">
             <div className={`mic-button ${isRecording ? 'recording' : ''}`} onClick={isRecording ? stopRecording : startRecording}>
-              <span className="mic-emoji">🎤</span>
-              {isRecording ? (
-                <div className="pulse-ring"></div>
-              ) : (
-                <svg viewBox="0 0 24 24" fill="currentColor" className="mic-icon">
-                  <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                  <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                </svg>
-              )}
+              {/* The SVG is used as the constant icon, replacing the emoji. */}
+              <svg viewBox="0 0 24 24" fill="currentColor" className="mic-icon">
+                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+              </svg>
+              {/* The pulse ring is conditionally rendered when recording */}
+              {isRecording && <div className="pulse-ring"></div>}
             </div>
             <h3>{isRecording ? 'Listening... Speak now' : 'Click to Start Recording'}</h3>
             <p>{sectionsList.find(s => s.key === currentSection)?.name}</p>
@@ -171,4 +169,3 @@ const VoiceBuilder = () => {
 }
 
 export default VoiceBuilder
-
