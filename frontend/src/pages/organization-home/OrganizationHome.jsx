@@ -1,23 +1,25 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import QRCode from 'qrcode'
-import { Box, Typography, Button, Stack } from '@mui/material';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import QRCode from 'qrcode';
+import { Box, Typography, Button, Stack, Tabs, Tab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AppsIcon from '@mui/icons-material/Apps';
-import { OrganizationSearch } from '../../components/OrganizationSearch';
-import './OrganizationHome.css'
+// Corrected Import Extension Below: changed to .jsx
+import { OrganizationSearch } from '../../components/OrganizationSearch.jsx';
+import './OrganizationHome.css';
 
+// ... (rest of the OrganizationHome component code remains the same as provided in the previous step)
 const OrganizationHome = () => {
-  const navigate = useNavigate()
-  const [showProfileMenu, setShowProfileMenu] = useState(false)
-  const [showPaymentModal, setShowPaymentModal] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState(null)
-  const [isPremium, setIsPremium] = useState(true) // Set to true to test features
-  const [searchQuery, setSearchQuery] = useState('')
-  const [showJobModal, setShowJobModal] = useState(false)
-  const [qrCodeDataURL, setQrCodeDataURL] = useState('')
-  const [paymentStatus, setPaymentStatus] = useState('pending') // pending, processing, completed
-  const [showQRCode, setShowQRCode] = useState(false)
+  const navigate = useNavigate();
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [isPremium, setIsPremium] = useState(true); // Set to true to test features
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showJobModal, setShowJobModal] = useState(false);
+  const [qrCodeDataURL, setQrCodeDataURL] = useState('');
+  const [paymentStatus, setPaymentStatus] = useState('pending'); // pending, processing, completed
+  const [showQRCode, setShowQRCode] = useState(false);
   const [jobData, setJobData] = useState({
     title: '',
     description: '',
@@ -25,7 +27,7 @@ const OrganizationHome = () => {
     salary: '',
     requirements: '',
     jobType: 'Full-time'
-  })
+  });
 
   // Mock resume data for blue collar workers
   const [resumes] = useState([
@@ -95,9 +97,9 @@ const OrganizationHome = () => {
       certification: 'Beauty Course Certified',
       languages: ['Tamil', 'Hindi', 'English']
     }
-  ])
+  ]);
 
-  const [filteredResumes, setFilteredResumes] = useState(resumes)
+  const [filteredResumes, setFilteredResumes] = useState(resumes);
 
   const paymentPlans = [
     {
@@ -141,40 +143,40 @@ const OrganizationHome = () => {
       ],
       popular: false
     }
-  ]
+  ];
 
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
-      navigate('/tutorial')
+      navigate('/tutorial');
     }
-  }
+  };
 
+  // handleSearch now correctly passed to OrganizationSearch component
   const handleSearch = (query) => {
-    setSearchQuery(query)
+    setSearchQuery(query);
     if (query.trim() === '') {
-      setFilteredResumes(resumes)
+      setFilteredResumes(resumes);
     } else {
-      const filtered = resumes.filter(resume => 
+      const filtered = resumes.filter(resume =>
         resume.name.toLowerCase().includes(query.toLowerCase()) ||
         resume.title.toLowerCase().includes(query.toLowerCase()) ||
         resume.skills.some(skill => skill.toLowerCase().includes(query.toLowerCase()))
-      )
-      setFilteredResumes(filtered)
+      );
+      setFilteredResumes(filtered);
     }
-  }
+  };
 
   const generateQRCode = async (plan) => {
     try {
-      // Create payment data for QR code
       const paymentData = {
         amount: plan.price,
         plan: plan.name,
         duration: plan.duration,
         timestamp: new Date().toISOString(),
         transactionId: `TXN_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-      }
-      
-      const qrData = JSON.stringify(paymentData)
+      };
+
+      const qrData = JSON.stringify(paymentData);
       const qrCodeDataURL = await QRCode.toDataURL(qrData, {
         width: 200,
         margin: 2,
@@ -182,57 +184,66 @@ const OrganizationHome = () => {
           dark: '#000000',
           light: '#FFFFFF'
         }
-      })
-      
-      setQrCodeDataURL(qrCodeDataURL)
-      setShowQRCode(true)
-      setPaymentStatus('pending')
+      });
+
+      setQrCodeDataURL(qrCodeDataURL);
+      setShowQRCode(true);
+      setPaymentStatus('pending');
     } catch (error) {
-      console.error('Error generating QR code:', error)
-      alert('Error generating QR code. Please try again.')
+      console.error('Error generating QR code:', error);
+      alert('Error generating QR code. Please try again.');
     }
-  }
+  };
 
   const handleSelectPlan = (plan) => {
-    setSelectedPlan(plan)
-    setShowPaymentModal(true)
-    generateQRCode(plan)
-  }
+    setSelectedPlan(plan);
+    // Show modal first, then generate QR code if needed
+    setShowPaymentModal(true);
+     generateQRCode(plan); // Generate QR immediately on plan selection now
+  };
 
   const handlePayment = () => {
-    if (paymentStatus === 'pending') {
-      setPaymentStatus('processing')
-      
+    if (paymentStatus === 'pending' && selectedPlan) { // Added check for selectedPlan
+        // If QR code isn't shown yet, generate it first
+        if (!showQRCode) {
+             generateQRCode(selectedPlan);
+             // Maybe wait for user to scan, or provide a separate button?
+             // For now, let's assume clicking Pay Now starts the processing simulation
+             // If you want QR scanning simulation, the logic needs adjustment.
+        }
+
+      setPaymentStatus('processing');
+
       // Simulate payment processing
       setTimeout(() => {
-        setPaymentStatus('completed')
-        alert(`Payment of ₹${selectedPlan.price} for ${selectedPlan.duration} plan successful!`)
-        setIsPremium(true)
-        
+        setPaymentStatus('completed');
+        alert(`Payment of ₹${selectedPlan.price} for ${selectedPlan.duration} plan successful!`);
+        setIsPremium(true);
+
         // Close modal after successful payment
         setTimeout(() => {
-          setShowPaymentModal(false)
-          setSelectedPlan(null)
-          setShowQRCode(false)
-          setQrCodeDataURL('')
-          setPaymentStatus('pending')
-        }, 2000)
-      }, 3000)
+          setShowPaymentModal(false);
+          setSelectedPlan(null);
+          setShowQRCode(false);
+          setQrCodeDataURL('');
+          setPaymentStatus('pending');
+        }, 2000);
+      }, 3000);
     }
-  }
+  };
 
   const handleCreateJob = () => {
     if (!isPremium) {
-      alert('Please upgrade to premium to create and post jobs!')
-      return
+      alert('Please upgrade to premium to create and post jobs!');
+      return;
     }
-    setShowJobModal(true)
-  }
+    setShowJobModal(true);
+  };
 
   const handleJobSubmit = (e) => {
-    e.preventDefault()
-    alert('Job posted successfully!')
-    setShowJobModal(false)
+    e.preventDefault();
+    alert('Job posted successfully!');
+    setShowJobModal(false);
     setJobData({
       title: '',
       description: '',
@@ -240,15 +251,15 @@ const OrganizationHome = () => {
       salary: '',
       requirements: '',
       jobType: 'Full-time'
-    })
-  }
+    });
+  };
 
   const handleJobInputChange = (field, value) => {
     setJobData(prev => ({
       ...prev,
       [field]: value
-    }))
-  }
+    }));
+  };
 
   return (
     <div className="organization-home-container">
@@ -256,8 +267,8 @@ const OrganizationHome = () => {
       <div className="org-header">
         <div className="header-left">
           <img src="/logos/logo.png" alt="ReZoom Logo" className="header-logo" onError={(e) => {
-            e.target.style.display = 'none'
-            e.target.nextElementSibling.style.display = 'flex'
+            e.target.style.display = 'none';
+            e.target.nextElementSibling.style.display = 'flex';
           }} />
           <div className="logo-placeholder-header" style={{ display: 'none' }}>RZ</div>
           <h1 className="app-name">ReZoom</h1>
@@ -276,8 +287,8 @@ const OrganizationHome = () => {
             {showProfileMenu && (
               <div className="profile-dropdown-menu">
                 <button className="profile-menu-item" onClick={() => {
-                  setShowProfileMenu(false)
-                  navigate('/organization-edit-profile')
+                  setShowProfileMenu(false);
+                  navigate('/organization-edit-profile');
                 }}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
@@ -286,8 +297,8 @@ const OrganizationHome = () => {
                   Edit Profile
                 </button>
                 <button className="profile-menu-item" onClick={() => {
-                  setShowProfileMenu(false)
-                  navigate('/payment-history')
+                  setShowProfileMenu(false);
+                  navigate('/payment-history');
                 }}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -334,7 +345,7 @@ const OrganizationHome = () => {
         )}
 
         {/* M3 Styled Search and Action Buttons */}
-        <Box sx={{ 
+        <Box sx={{
           backgroundColor: '#0A4DFF',
           p: { xs: 2, md: 4 },
           borderRadius: '12px',
@@ -343,7 +354,8 @@ const OrganizationHome = () => {
         }}>
           {/* The M3-styled Search Bar */}
           <Box sx={{ mb: 3 }}>
-            <OrganizationSearch />
+            {/* Pass state and handler */}
+            <OrganizationSearch searchQuery={searchQuery} onSearchChange={handleSearch} />
           </Box>
 
           {/* M3-styled Action Buttons */}
@@ -437,7 +449,7 @@ const OrganizationHome = () => {
                       <p>{worker.title}</p>
                     </div>
                   </div>
-                  
+
                   <div className="resume-details">
                     <div className="detail-item">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -501,58 +513,63 @@ const OrganizationHome = () => {
         </div>
       </div>
 
-      {/* Payment Modal */}
+     {/* Payment Modal */}
       {showPaymentModal && (
         <div className="payment-modal">
           <div className="payment-modal-content">
             <div className="payment-header">
               <h2>Choose Your Plan</h2>
               <button className="close-btn" onClick={() => {
-                setShowPaymentModal(false)
-                setSelectedPlan(null)
-                setShowQRCode(false)
-                setQrCodeDataURL('')
-                setPaymentStatus('pending')
+                setShowPaymentModal(false);
+                setSelectedPlan(null);
+                setShowQRCode(false);
+                setQrCodeDataURL('');
+                setPaymentStatus('pending');
               }}>
                 ✕
               </button>
             </div>
 
-            <div className="plans-grid">
-              {paymentPlans.map(plan => (
-                <div key={plan.id} className={`plan-card ${plan.popular ? 'popular' : ''}`}>
-                  {plan.popular && <div className="popular-badge">Most Popular</div>}
-                  
-                  <div className="plan-header">
-                    <h3>{plan.name}</h3>
-                    <div className="plan-price">
-                      <span className="currency">₹</span>
-                      <span className="amount">{plan.price}</span>
-                      <span className="duration">/{plan.duration}</span>
-                    </div>
-                  </div>
+             {/* Show plans ONLY if no plan is selected yet */}
+            {!selectedPlan && (
+                 <div className="plans-grid">
+                  {paymentPlans.map(plan => (
+                    <div key={plan.id} className={`plan-card ${plan.popular ? 'popular' : ''}`}>
+                      {plan.popular && <div className="popular-badge">Most Popular</div>}
 
-                  <div className="plan-features">
-                    {plan.features.map((feature, index) => (
-                      <div key={index} className="feature-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        <span>{feature}</span>
+                      <div className="plan-header">
+                        <h3>{plan.name}</h3>
+                        <div className="plan-price">
+                          <span className="currency">₹</span>
+                          <span className="amount">{plan.price}</span>
+                          <span className="duration">/{plan.duration}</span>
+                        </div>
                       </div>
-                    ))}
-                  </div>
 
-                  <button 
-                    className="select-plan-btn"
-                    onClick={() => handleSelectPlan(plan)}
-                  >
-                    Select Plan
-                  </button>
+                      <div className="plan-features">
+                        {plan.features.map((feature, index) => (
+                          <div key={index} className="feature-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <button
+                        className="select-plan-btn"
+                        onClick={() => handleSelectPlan(plan)} // This now just sets the selected plan
+                      >
+                        Select Plan
+                      </button>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+            )}
 
+
+            {/* Show summary and payment options only AFTER a plan is selected */}
             {selectedPlan && (
               <div className="payment-summary">
                 <div className="summary-content">
@@ -567,6 +584,7 @@ const OrganizationHome = () => {
                   </div>
                 </div>
 
+                {/* QR Code Section - Generate QR when plan is selected, show it here */}
                 {showQRCode && (
                   <div className="qr-payment-section">
                     <div className="qr-code-container">
@@ -581,23 +599,24 @@ const OrganizationHome = () => {
                   </div>
                 )}
 
+                {/* Payment Actions */}
                 <div className="payment-actions">
                   {paymentStatus === 'pending' && (
                     <button className="pay-now-btn" onClick={handlePayment}>
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                       </svg>
-                      Pay ₹{selectedPlan.price}
+                      {showQRCode ? 'Confirm Payment' : `Pay ₹${selectedPlan.price}`}
                     </button>
                   )}
-                  
+
                   {paymentStatus === 'processing' && (
                     <button className="pay-now-btn processing" disabled>
                       <div className="spinner"></div>
                       Processing Payment...
                     </button>
                   )}
-                  
+
                   {paymentStatus === 'completed' && (
                     <div className="payment-success">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -613,6 +632,7 @@ const OrganizationHome = () => {
           </div>
         </div>
       )}
+
 
       {/* Job Creation Modal */}
       {showJobModal && (
@@ -707,7 +727,7 @@ const OrganizationHome = () => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default OrganizationHome
+export default OrganizationHome;

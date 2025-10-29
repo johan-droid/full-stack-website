@@ -64,8 +64,8 @@ input:-webkit-autofill:active {
 
 /* Organization home search */
 .org-main-content input {
-  background: var(--color-bg-secondary) !important;
-  color: var(--color-text-primary) !important;
+      background: #ffffff !important;
+    color: var(--color-text-primary) !important;
 }
 
 /* Autofill fixes for all browsers */

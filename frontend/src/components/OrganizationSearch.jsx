@@ -1,50 +1,41 @@
 import React from 'react'
-import { Box, TextField, InputAdornment } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import { useLanguage } from '../contexts/LanguageContext'
+import { Box, InputBase } from '@mui/material'
+import SearchIcon from '@mui/icons-material/Search';
 
-export const OrganizationSearch = () => {
-  const { translate } = useLanguage()
-
+// This component is now "controlled"
+// It receives the value and the change handler from its parent (OrganizationHome)
+export const OrganizationSearch = ({ searchQuery, onSearchChange }) => {
   return (
-    <Box
-      sx={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        my: 3,
-      }}
-    >
-      <TextField
-        variant="outlined"
+    <Box sx={{
+      display: 'flex',
+      alignItems: 'center',
+      backgroundColor: 'white',
+      borderRadius: '50px', // This creates the rounded "pill" shape
+      padding: '8px 16px',
+      width: '100%',
+      // Optional: a subtle shadow to make it pop, like in M3
+      boxShadow: '0 1px 3px rgba(0,0,0,0.1)' 
+    }}>
+      {/* Search Icon */}
+      <SearchIcon sx={{ 
+        color: 'grey.600', // A medium-gray for the icon
+        mr: 1.5 // Margin-right to add space
+      }} />
+
+      {/* Input Field */}
+      <InputBase
         fullWidth
-        placeholder={translate('Search workers by name, skills, or job type...')}
+        placeholder="Search workers by name, skills, or job type..."
+        value={searchQuery}
+        onChange={(e) => onSearchChange(e.target.value)}
         sx={{
-          maxWidth: '600px',
-          '& .MuiOutlinedInput-root': {
-            borderRadius: '50px',
-            backgroundColor: 'background.paper',
-            '& fieldset': {
-              borderColor: 'rgba(0, 0, 0, 0.15)',
-            },
-            '&:hover fieldset': {
-              borderColor: 'rgba(0, 0, 0, 0.3)',
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: 'primary.main',
-            },
-          },
-        }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start" sx={{ pl: 1.5, color: 'action.active' }}>
-              <SearchIcon />
-            </InputAdornment>
-          ),
+          // Styles the placeholder text
+          '& .MuiInputBase-input::placeholder': {
+            color: 'grey.500',
+            opacity: 1,
+          }
         }}
       />
     </Box>
-  )
-}
-
-export default OrganizationSearch
+  );
+};
