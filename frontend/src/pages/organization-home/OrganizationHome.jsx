@@ -14,7 +14,15 @@ const OrganizationHome = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
-  const [isPremium, setIsPremium] = useState(true); // Set to true to test features
+  const [isPremium, setIsPremium] = useState(() => {
+    // Check if there's a valid payment in localStorage
+    const paymentInfo = localStorage.getItem('organizationPayment');
+    if (paymentInfo) {
+      const { expiryDate } = JSON.parse(paymentInfo);
+      return new Date(expiryDate) > new Date();
+    }
+    return false;
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [showJobModal, setShowJobModal] = useState(false);
   const [qrCodeDataURL, setQrCodeDataURL] = useState('');
@@ -28,6 +36,87 @@ const OrganizationHome = () => {
     requirements: '',
     jobType: 'Full-time'
   });
+
+  const paymentPlans = [
+    {
+      id: 'monthly',
+      name: 'Monthly Plan',
+      price: 299,
+      duration: '1 Month',
+      features: [
+        'Access to worker database',
+        'Search and filter candidates',
+        'Create and post jobs',
+        'Email support'
+      ],
+      popular: false
+    },
+    {
+      id: 'six-monthly',
+      name: '6 Months Plan',
+      price: 799,
+      duration: '6 Months',
+      features: [
+        'Everything in Monthly',
+        'Advanced search filters',
+        'Priority support',
+        'Analytics dashboard',
+        'Bulk candidate management'
+      ],
+      popular: true
+    },
+    {
+      id: 'yearly',
+      name: 'Yearly Plan',
+      price: 1399,
+      duration: '1 Year',
+      features: [
+        'Everything in 6 Months',
+        'Dedicated account manager',
+        'Custom reporting',
+        'API access',
+        '24/7 priority support',
+        'Save 60% compared to monthly'
+      ],
+      popular: false
+    }
+  ];
+
+  const handleSelectPlan = (plan) => {
+    setSelectedPlan(plan);
+    // Generate QR code when a plan is selected
+    generateQRCode(plan);
+  };
+
+  const generateQRCode = async (plan) => {
+    try {
+      const paymentData = {
+        amount: plan.price,
+        currency: 'INR',
+        description: `Payment for ${plan.name} plan`,
+        order_id: `ORDER_${Date.now()}`
+      };
+      
+      // In a real app, you would send this to your backend to generate a payment request
+      // For demo, we'll just create a simple UPI payment link
+      const upiLink = `upi://pay?pa=your-merchant@upi&pn=Your%20Business&mc=1234&tid=${Date.now()}&tr=TR${Date.now()}&tn=Payment%20for%20${plan.name}%20Plan&am=${plan.price}&cu=INR`;
+      
+      const qrCodeData = await QRCode.toDataURL(upiLink, {
+        width: 200,
+        margin: 2,
+        color: {
+          dark: '#000000',
+          light: '#ffffff'
+        }
+      });
+      
+      setQrCodeDataURL(qrCodeData);
+      setShowQRCode(true);
+    } catch (error) {
+      console.error('Error generating QR code:', error);
+      alert('Failed to generate QR code. Please try again.');
+    }
+  };
 
   // Mock resume data for blue collar workers
   const [resumes] = useState([
@@ -101,49 +190,6 @@ const OrganizationHome = () => {
 
   const [filteredResumes, setFilteredResumes] = useState(resumes);
 
-  const paymentPlans = [
-    {
-      id: 'monthly',
-      name: 'Monthly Plan',
-      price: 299,
-      duration: '1 Month',
-      features: [
-        'Access to worker database',
-        'Search and filter candidates',
-        'Create and post jobs',
-        'Email support'
-      ],
-      popular: false
-    },
-    {
-      id: 'six-monthly',
-      name: '6 Months Plan',
-      price: 799,
-      duration: '6 Months',
-      features: [
-        'Everything in Monthly',
-        'Advanced search filters',
-        'Priority support',
-        'Analytics dashboard',
-        'Bulk candidate management'
-      ],
-      popular: true
-    },
-    {
-      id: 'yearly',
-      name: 'Yearly Plan',
-      price: 1399,
-      duration: '1 Year',
-      features: [
-        'Everything in 6 Months',
-        'Unlimited job postings',
-        'Custom branding',
-        'API access',
-        'Dedicated account manager'
-      ],
-      popular: false
-    }
-  ];
 
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
@@ -166,75 +212,70 @@ const OrganizationHome = () => {
     }
   };
 
-  const generateQRCode = async (plan) => {
+
+
+  const handlePayment = async () => {
+    if (!selectedPlan) return;
+    
     try {
-      const paymentData = {
-        amount: plan.price,
-        plan: plan.name,
-        duration: plan.duration,
-        timestamp: new Date().toISOString(),
-        transactionId: `TXN_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-      };
-
-      const qrData = JSON.stringify(paymentData);
-      const qrCodeDataURL = await QRCode.toDataURL(qrData, {
-        width: 200,
-        margin: 2,
-        color: {
-          dark: '#000000',
-          light: '#FFFFFF'
-        }
-      });
-
-      setQrCodeDataURL(qrCodeDataURL);
-      setShowQRCode(true);
-      setPaymentStatus('pending');
-    } catch (error) {
-      console.error('Error generating QR code:', error);
-      alert('Error generating QR code. Please try again.');
-    }
-  };
-
-  const handleSelectPlan = (plan) => {
-    setSelectedPlan(plan);
-    // Show modal first, then generate QR code if needed
-    setShowPaymentModal(true);
-     generateQRCode(plan); // Generate QR immediately on plan selection now
-  };
-
-  const handlePayment = () => {
-    if (paymentStatus === 'pending' && selectedPlan) { // Added check for selectedPlan
-        // If QR code isn't shown yet, generate it first
-        if (!showQRCode) {
-             generateQRCode(selectedPlan);
-             // Maybe wait for user to scan, or provide a separate button?
-             // For now, let's assume clicking Pay Now starts the processing simulation
-             // If you want QR scanning simulation, the logic needs adjustment.
-        }
+      // If QR code isn't shown yet, generate it first
+      if (!showQRCode) {
+        await generateQRCode(selectedPlan);
+      }
 
       setPaymentStatus('processing');
 
       // Simulate payment processing
-      setTimeout(() => {
-        setPaymentStatus('completed');
-        alert(`Payment of ₹${selectedPlan.price} for ${selectedPlan.duration} plan successful!`);
-        setIsPremium(true);
-
-        // Close modal after successful payment
+      return new Promise((resolve) => {
         setTimeout(() => {
-          setShowPaymentModal(false);
-          setSelectedPlan(null);
-          setShowQRCode(false);
-          setQrCodeDataURL('');
-          setPaymentStatus('pending');
-        }, 2000);
-      }, 3000);
+          setPaymentStatus('completed');
+          setIsPremium(true);
+          
+          // Store payment info in localStorage
+          const paymentInfo = {
+            plan: selectedPlan.name,
+            amount: selectedPlan.price,
+            expiryDate: new Date(Date.now() + (
+              selectedPlan.duration === '1 Month' ? 30 * 24 * 60 * 60 * 1000 : 
+              selectedPlan.duration === '6 Months' ? 6 * 30 * 24 * 60 * 60 * 1000 : 
+              365 * 24 * 60 * 60 * 1000
+            )),
+            features: selectedPlan.features,
+            paymentDate: new Date().toISOString(),
+            status: 'active'
+          };
+          
+          localStorage.setItem('organizationPayment', JSON.stringify(paymentInfo));
+          
+          // Close modal after successful payment
+          setTimeout(() => {
+            setShowPaymentModal(false);
+            setSelectedPlan(null);
+            setShowQRCode(false);
+            setQrCodeDataURL('');
+            setPaymentStatus('pending');
+            
+            // Show success message
+            alert(`Payment of ₹${selectedPlan.price} for ${selectedPlan.duration} plan successful!\nYou now have full access to all features.`);
+            
+            // Refresh the page to update the UI
+            window.location.reload();
+            
+            resolve(true);
+          }, 2000);
+        }, 3000);
+      });
+    } catch (error) {
+      console.error('Payment error:', error);
+      alert('Payment failed. Please try again.');
+      setPaymentStatus('pending');
+      return false;
     }
   };
 
   const handleCreateJob = () => {
     if (!isPremium) {
-      alert('Please upgrade to premium to create and post jobs!');
+      setShowPaymentModal(true);
       return;
     }
     setShowJobModal(true);
@@ -301,9 +342,21 @@ const OrganizationHome = () => {
                   navigate('/payment-history');
                 }}>
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    <path d="M12 1a3 3 0 0 0-3 3v8H3v8h18v-8h-6V4a3 3 0 0 0-3-3z"></path>
                   </svg>
                   Payment History
+                </button>
+                <button 
+                  className="profile-menu-item upgrade-plan"
+                  onClick={() => {
+                    setShowProfileMenu(false);
+                    setShowPaymentModal(true);
+                  }}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  </svg>
+                  Upgrade Plan
                 </button>
                 <hr className="menu-divider" />
                 <button className="profile-menu-item logout" onClick={handleLogout}>
@@ -655,6 +708,7 @@ const OrganizationHome = () => {
                     onChange={(e) => handleJobInputChange('title', e.target.value)}
                     placeholder="e.g., Driver, Cook, Mechanic, Maid"
                     required
+                    style={{ color: '#000000', backgroundColor: '#ffffff' }}
                   />
                 </div>
                 <div className="form-group">
@@ -680,6 +734,7 @@ const OrganizationHome = () => {
                     onChange={(e) => handleJobInputChange('location', e.target.value)}
                     placeholder="e.g., Mumbai, Delhi, Bangalore"
                     required
+                    style={{ color: '#000000', backgroundColor: '#ffffff' }}
                   />
                 </div>
                 <div className="form-group">
@@ -689,6 +744,7 @@ const OrganizationHome = () => {
                     value={jobData.salary}
                     onChange={(e) => handleJobInputChange('salary', e.target.value)}
                     placeholder="e.g., ₹15,000-25,000/month"
+                    style={{ color: '#000000', backgroundColor: '#ffffff' }}
                   />
                 </div>
               </div>
@@ -701,6 +757,7 @@ const OrganizationHome = () => {
                   placeholder="Describe the role, responsibilities, and what you're looking for in a worker..."
                   rows={4}
                   required
+                  style={{ color: '#000000', backgroundColor: '#ffffff' }}
                 />
               </div>
 
@@ -711,6 +768,7 @@ const OrganizationHome = () => {
                   onChange={(e) => handleJobInputChange('requirements', e.target.value)}
                   placeholder="List the required skills, experience, physical abilities, or certifications needed..."
                   rows={3}
+                  style={{ color: '#000000', backgroundColor: '#ffffff' }}
                 />
               </div>
 
@@ -726,6 +784,7 @@ const OrganizationHome = () => {
           </div>
         </div>
       )}
+
     </div>
   );
 };

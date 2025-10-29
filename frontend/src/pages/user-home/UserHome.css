@@ -199,14 +199,15 @@
 }
 
 .welcome-section h2 {
-  color: white;
+  color: white !important;
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .welcome-section p {
-  color: rgba(255, 255, 255, 0.9);
+  color: white !important;
   font-size: 1.2rem;
+  opacity: 1 !important;
 }
 
 /* Voice Build Section */
@@ -302,11 +303,13 @@
 .action-card h4 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
+  color: white;
 }
 
 .action-card p {
-  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.95rem;
+  margin: 0;
 }
 
 /* Recent Activity */

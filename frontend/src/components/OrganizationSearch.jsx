@@ -29,11 +29,28 @@ export const OrganizationSearch = ({ searchQuery, onSearchChange }) => {
         value={searchQuery}
         onChange={(e) => onSearchChange(e.target.value)}
         sx={{
+          color: 'black',
+          '& .MuiInputBase-input': {
+            color: 'black',
+          },
           // Styles the placeholder text
           '& .MuiInputBase-input::placeholder': {
             color: 'grey.500',
             opacity: 1,
+          },
+          '& .MuiInputBase-input:-webkit-autofill': {
+            WebkitTextFillColor: 'black',
+            WebkitBoxShadow: '0 0 0 30px white inset',
+          },
+          '& .MuiInputBase-input.Mui-focused': {
+            color: 'black',
           }
+        }}
+        inputProps={{
+          style: {
+            color: 'black',
+            backgroundColor: 'white',
+          },
         }}
       />
     </Box>
