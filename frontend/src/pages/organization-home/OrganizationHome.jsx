@@ -41,7 +41,7 @@ const OrganizationHome = () => {
     {
       id: 'monthly',
       name: 'Monthly Plan',
-      price: 299,
+      price: 399,
       duration: '1 Month',
       features: [
         'Access to worker database',
@@ -54,7 +54,7 @@ const OrganizationHome = () => {
     {
       id: 'six-monthly',
       name: '6 Months Plan',
-      price: 799,
+      price: 499,
       duration: '6 Months',
       features: [
         'Everything in Monthly',
@@ -68,7 +68,7 @@ const OrganizationHome = () => {
     {
       id: 'yearly',
       name: 'Yearly Plan',
-      price: 1399,
+      price: 599,
       duration: '1 Year',
       features: [
         'Everything in 6 Months',
