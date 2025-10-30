@@ -37,9 +37,17 @@
   font-weight: 700;
 }
 
+/* High specificity selector for welcome message */
+#welcome-message,
+.welcome-section p#welcome-message,
+.welcome-section #welcome-message,
 .welcome-section p {
-  font-size: 1.1rem;
-  opacity: 0.9;
+    color: white !important;
+    font-size: 16px;
+    margin: 0;
+    -webkit-text-fill-color: white !important;
+    text-fill-color: white !important;
+    opacity: 1 !important;
 }
 
 .login-form-section {

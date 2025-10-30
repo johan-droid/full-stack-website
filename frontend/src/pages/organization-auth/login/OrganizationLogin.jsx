@@ -30,7 +30,7 @@ const OrganizationLogin = () => {
         <button className="back-btn" onClick={() => navigate('/tutorial')}>←</button>
         <div className="welcome-section">
           <h1>Welcome Back!</h1>
-          <p>Sign in to continue your journey</p>
+          <p id="welcome-message" style={{ color: 'white' }}>Sign in to continue your journey</p>
         </div>
       </div>
 
