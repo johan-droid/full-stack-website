@@ -306,9 +306,11 @@
 }
 
 .candidate-info p {
-  color: #6b7280;
+  color: #4b5563;  /* Darker gray for better readability */
   font-size: 14px;
   margin: 0;
+  font-weight: 500;  /* Slightly bolder for better contrast */
+  opacity: 0.9;     /* Slightly transparent but still very readable */
 }
 
 .resume-details {

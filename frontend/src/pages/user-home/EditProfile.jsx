@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useLanguage } from '../../contexts/LanguageContext'
+import { useNavigate } from 'react-router-dom'
 import {
   Box,
   Paper,
@@ -31,6 +32,7 @@ const SectionHeader = ({ title, subtitle }) => (
 
 export const EditProfile = () => {
   const { translate } = useLanguage()
+  const navigate = useNavigate()
   const [profilePic, setProfilePic] = useState(null)
   
   // State for all form fields
@@ -47,7 +49,7 @@ export const EditProfile = () => {
   }
 
   const handleGoBack = () => {
-    console.log('Go Back Clicked')
+    navigate(-1)
   }
 
   const handleFileChange = (event) => {
